@@ -1,4 +1,51 @@
 import glob
+import string
+import pandas as pd
+import os
+import glob
+from pickle import dump, load
+from IPython.display import Image, display
+import matplotlib.pyplot as plt
+import time
+import numpy as np
+import random    
+import re
+
+import tensorflow as tf
+from tensorflow.keras.layers import BatchNormalization
+
+from keras.applications.xception import Xception, preprocess_input
+from keras.applications.vgg16 import VGG16, preprocess_input
+from keras.applications.resnet50 import ResNet50
+
+from keras.preprocessing.image import load_img, img_to_array
+from keras.preprocessing.text import Tokenizer
+from keras.preprocessing.sequence import pad_sequences
+from keras.utils import to_categorical
+from keras.utils import plot_model
+from keras.layers.merge import add
+from keras.models import Model, load_model
+from keras.layers import Input, Dense, LSTM, Embedding, Dropout
+
+from keras.callbacks import ModelCheckpoint
+from keras.models import Sequential
+from keras.models import Model, load_model
+from keras.layers import Input, Dense, LSTM, Embedding, Dropout, Bidirectional, GRU
+from keras.layers import RepeatVector,TimeDistributed
+from keras.layers import Concatenate,Activation
+from keras.optimizers import Adam,RMSprop
+
+#keras-self-attention         #https://pypi.org/project/keras-self-attention/
+!pip -q install keras-self-attention
+from keras_self_attention import SeqSelfAttention, SeqWeightedAttention
+
+#Keras Attention & AdditiveAttention
+from keras.layers import Attention            #Attention() layers, implementing Luong attention.
+from keras.layers import AdditiveAttention    #AdditiveAttention() layers, implementing Bahdanau attention.
+
+# small library for seeing the progress of loops.
+#from tqdm.notebook import tqdm as tqdm        #from tqdm import tqdm_notebook as tqdm
+#tqdm().pandas()
 
 # Prepare Photo Data
 # Xception
