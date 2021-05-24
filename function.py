@@ -43,3 +43,38 @@ def create_sequences(tokenizer, max_length, desc_list, photo):
             X2.append(in_seq)
             y.append(out_seq)
     return np.array(X1), np.array(X2), np.array(y)
+
+def load_all_h5_in_folder(dir, customObjects=None):
+  dir_model = glob.glob(r''+dir+'*.h5')
+  model_name = []
+  model_list = []
+
+  for dir in dir_model:
+      temp = dir.split('/')[-1]
+      model_name.append(temp)
+      try:
+          model = load_model(dir, custom_objects = customObjects)
+          model_list.append(model)
+      except:
+          print("error")
+  return (model_list,model_name)
+
+# load all model
+def load_h5_each_folder(dir, customObjects=None):
+    model_name = []
+    model_list = []
+    dir_model = glob.glob(dir)
+    dir_model.sort()
+    dir_model = [name.split('/')[-1] for name in dir_model]
+
+    for dir in dir_model:
+        temp = os.listdir('./model/'+dir)[-1]
+        temp = temp.split(".")[0]
+        model_name.append(temp)
+        try:
+            model = load_model('./model/'+dir+'/'+ temp +'.h5',custom_objects=customObjects)
+            model_list.append(model)
+        except:
+            print("error")
+
+    return (model_list,model_name)
