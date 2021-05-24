@@ -1,3 +1,5 @@
+import glob
+
 # Prepare Photo Data
 # Xception
 def extract_features_xception(directory,start,stop):
@@ -105,7 +107,10 @@ def split_train_test(dictionary,row):
     print("Test :",len(new_test_dict))
     return new_train_dict,new_test_dict
 
-
+def perplexity(y_true, y_pred):
+    cross_entropy = keras.backend.categorical_crossentropy(y_true, y_pred)
+    perplexity = keras.backend.pow(2.0, cross_entropy)
+    return perplexity
 
 #data generator, intended to be used in a call to model.fit_generator()
 def data_generator(descriptions, photos, tokenizer, max_length):
